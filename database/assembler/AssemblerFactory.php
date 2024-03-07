@@ -2,6 +2,43 @@
 
 namespace core\database\assembler;
 
+/*
+	$values = [
+		'groupingSpecs' => string field,
+		
+		'groupingSpecs' => [string field, bool isColection],
+			
+		'groupingSpecs' => function($values) {
+			return value;
+		},
+			
+		'groupingSpecs' => [function($values) {
+			return value;
+		}, bool isColection]
+		
+		'groupingSpecs' => [
+			table* => string field, // * isColection 
+				
+			table => string field,
+				
+			table => function($values) {
+				return value;
+			}
+		],
+		
+		
+		'interceptors' => function($values) {				
+			return $values;
+		},
+		
+		'interceptors' => [
+			table => function($values) {				
+				return $values;
+			}
+		]
+	]
+*/
+
 class AssemblerFactory {
 	
 	static public function create(array $values = null) {
