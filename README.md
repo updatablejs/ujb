@@ -1,5 +1,5 @@
 
-<p>Assemble the result of a database query using Php and Mysql.</p>
+<h1>Assemble the result of a database query using Php and Mysql.</h1>
 <p>Assembly is done using a structure that can be of the form: "table1.table2*|junction". The entities from table 2 will be added to the entity from table 1 in the field named "table2". If it is desired for these entities (from table 2) to be added into a different field, then a new location can be added as follows: 'table1.table2*(location)'.
 </p>
 <p>
