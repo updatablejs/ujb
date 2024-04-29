@@ -71,6 +71,14 @@ $assembler = [
 <p>You can find the database used in these examples in the assembler.sql file in the same directory.</p>
 
 <pre>
+// This file contains some global functions
+require('ujb/functions/common.php');
+
+// You can use your own autoloader
+spl_autoload_register(function ($class) {
+	require $class . '.php';
+});
+
 use ujb\database\Database,
 	ujb\database\adapters\pdo\Driver;
 
@@ -88,12 +96,25 @@ $database = new Database(new Driver([
 <h3>Group albums by name in collections</h3>
 <p>For each name we will have a list of albums.</p>
 <pre>
-$database->prepare('SELECT * FROM albums')
+$result = $database->prepare('SELECT * FROM albums')
 	->setAssembler([
 		'groups' => ['name', true],
 	])
 
 	->execute();
+
+printr($result->fetchAll());
+
+/*
+while ($entity = $result->fetch()) {
+	printr($entity);
+}
+
+foreach ($result as $key => $entity) {
+	printr($key);
+	printr($entity);
+}
+*/
 </pre>
 
 <pre>
