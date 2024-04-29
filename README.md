@@ -29,7 +29,9 @@ $result = $database->prepare(
 	->execute();
 
 print_r($result->fetchAll());
+</pre>
 
+<pre>
 Array
 (
     [0] => Array
