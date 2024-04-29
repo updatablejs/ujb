@@ -28,10 +28,8 @@ $result = $database->prepare(
 
 	->execute();
 
-print_r($result);
-</pre>
+print_r($result->fetchAll());
 
-<pre>
 Array
 (
     [0] => Array
