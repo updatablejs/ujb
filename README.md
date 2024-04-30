@@ -12,7 +12,7 @@
 	Multiple structures can be added: ['user.salaries(salary)', 'user.photos(avatar)']
 </p>
 <p>
-	<a href="https://github.com/updatablejs/ujb/blob/main/docs/database/assembler.html">More information can be found here</a>
+	<a href="https://github.com/updatablejs/ujb/blob/main/docs/database/assembler.md">More information can be found here</a>
 </p>
 
 <p>Here is an example.</p>
