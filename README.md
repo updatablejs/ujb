@@ -90,5 +90,6 @@ Array
 
 <h2>Documentation</h2>
  <ul>
+  <li><a href="https://github.com/updatablejs/ujb/blob/main/docs/database/database.md">Database</a></li>
   <li><a href="https://github.com/updatablejs/ujb/blob/main/docs/database/assembler.md">Assembler</a></li>
 </ul>

@@ -70,6 +70,10 @@ $assembler = [
 
 <p>You can find the database used in these examples in the assembler.sql file in the same directory.</p>
 
+<div class="example">
+<h3>Instantiating the database object</h3>
+<p>Here you can read more about the <a href="https://github.com/updatablejs/ujb/blob/main/docs/database/database.md">ujb\database\Database</a> class.</p>
+<p>If you don't want to use this class "ujb\database\Database" you can use the "\PDO" class, there is an example at the end of this page.</p>
 <pre>
 // This file contains some global functions
 require('ujb/functions/common.php');
@@ -89,10 +93,10 @@ $database = new Database(new Driver([
 	'name' => ''
 ]));
 </pre>
+</div>
 
-<p>If you don't want to use this class "ujb\database\Database" you can use the "\PDO" class, there is an example at the end of this page.</p>
 
-<div>
+<div class="example">
 <h3>Group albums by name in collections</h3>
 <p>For each name we will have a list of albums.</p>
 <pre>
@@ -115,9 +119,7 @@ foreach ($result as $key => $entity) {
 	printr($entity);
 }
 */
-</pre>
 
-<pre>
 Array
 (
     [The Wild Places] => Array
@@ -164,7 +166,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Group albums by name</h3>
 <p>For each name we will have an album.</p>
 <pre>
@@ -174,9 +176,7 @@ $database->prepare('SELECT * FROM albums')
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [The Wild Places] => Array
@@ -204,7 +204,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Group albums in collections using a function</h3>
 <p>For each unique result of the function we will have a list of albums.</p>
 <pre>
@@ -216,9 +216,7 @@ $database->prepare('SELECT * FROM albums')
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [2024/03/01] => Array
@@ -279,7 +277,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Select albums and change their values using an interceptor</h3>
 <p></p>
 <pre>
@@ -293,9 +291,7 @@ $database->prepare('SELECT * FROM albums')
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [0] => Array
@@ -323,7 +319,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Using structure in a one to many relationship</h3>
 <p>We are using this structure "albums.photos*" to indicate that an album has many photos.</p>
 <pre>
@@ -337,9 +333,7 @@ $database->prepare(
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [0] => Array
@@ -432,7 +426,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Structure, groups and interceptors in a one to many relationship</h3>
 <p>We use the same example as above, but now we add some additional grouping specifications and an interceptor. We are grouping albums by name in collections (* indicate that for each unique album name we have a collection of albums) and we group photos by file name. We are also using an interceptor to change the photo file name.
 </p>
@@ -460,9 +454,7 @@ $database->prepare(
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [The Wild Places] => Array
@@ -582,7 +574,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Many to many relationship</h3>
 <p>We are using this structure 'users.albums*|users_albums' to indicate that a user has may albums. In this query we are useing a junction table "users_albums". Each user can have many albums and each album can belong to many users.</p>
 <pre>
@@ -597,9 +589,7 @@ $database->prepare(
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [0] => Array
@@ -706,7 +696,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>One to one relationship</h3>
 <p>We are using this structure "users.salaries(salary)" to indicate that each user has one salary. We change the name of the field where the entity of the table "salaries" will be added, from "salaries" to "salary". This change is not necessary, we can leave things unchanged like this "users.salaries"</p>
 <pre>
@@ -720,9 +710,7 @@ $database->prepare(
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [0] => Array
@@ -779,7 +767,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Using multiple structures</h3>
 <p></p>
 <pre>
@@ -799,9 +787,7 @@ $database->prepare(
 	])
 
 	->execute();
-</pre>
 
-<pre>
 Array
 (
     [0] => Array
@@ -1116,7 +1102,7 @@ Array
 </div>
 
 
-<div>
+<div class="example">
 <h3>Assembler with pdo</h3>
 <p></p>
 <pre>
@@ -1152,6 +1138,4 @@ $assembler = AssemblerFactory::create([
 
 $result = $assembler->assemble($result);
 </pre>
-
-<pre></pre>
 </div>
