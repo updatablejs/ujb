@@ -8,18 +8,6 @@ function printr($array) {
 	echo '</pre>';
 }
 
-function getExecutionTime($callback, $iterations) {
-	$chronometer = new Chronometer();
-	for ($i = 0; $i < $iterations; $i++) {
-		$callback();
-	}
-	
-	$time = $chronometer->stop();
-	
-	return ['total' => round($time, 8), 
-		'iteration' => round($time / $iterations, 8)];
-}
-
 if (!function_exists('is_iterable')) {
 	function is_iterable($obj) {
         return is_array($obj) || $obj instanceof \Traversable;

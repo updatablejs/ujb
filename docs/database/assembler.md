@@ -71,7 +71,7 @@ $assembler = [
 <p>You can find the database used in these examples in the assembler.sql file in the same directory.</p>
 
 <div class="example">
-<h3>Instantiating the database object</h3>
+<h3>Database connection</h3>
 <p>Here you can read more about the <a href="https://github.com/updatablejs/ujb/blob/main/docs/database/database.md">ujb\database\Database</a> class.</p>
 <p>If you don't want to use this class "ujb\database\Database" you can use the "\PDO" class, there is an example at the end of this page.</p>
 <pre>

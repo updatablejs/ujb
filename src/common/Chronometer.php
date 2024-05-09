@@ -6,7 +6,7 @@ class Chronometer {
 
 	public $startTime;
 	public $stopTime;
-	public $timeList = [];
+	public $marks = [];
 
 	public function __construct() {
 		$this->start();
@@ -19,32 +19,54 @@ class Chronometer {
 	public function stop() {
 		$this->stopTime = microtime(true);
 		
-		return $this->getTime();
+		return $this->getDuration();
 	}
 	
-	public function getTime() {
-		$result = $this->stopTime - $this->startTime;
-        
-		return $result > 0 ? $result : 0;
+	public function getDuration() {
+		return $this->getDifference($this->startTime, $this->stopTime);
+    }
+	
+	public function getStartTime() {
+		return $this->startTime;
+    }
+	
+	public function getStopTime() {
+		return $this->stopTime;
     }
 	
 	public function reset() {
-		$this->startTime = null;
 		$this->stopTime = null;
-		$this->timeList = [];
+		$this->marks = [];
+		$this->start();
+		
+		return $this;
 	}
 	
-	public function mark($key = null) {
+	public function mark($key = null, $extra = null) {		
 		$time = microtime(true);
-		
-		if ($key) $this->timeList[$key] = $time;
+		$duration = $this->getDifference($this->startTime, $time);
 	
-		return $time - $this->startTime;
+		if ($key) 
+			$this->marks[$key] = compact('time', 'duration', 'extra');
+		else
+			$this->marks[] = compact('time', 'duration', 'extra');
+		
+		return $duration;
 	}
 
-	public function display() {
-		foreach ($this->timeList as $key => $time) {
-			echo $key . ' ' . ($time - $this->startTime) . '<br>';
-		}
+	public function getMarks() {
+		return $this->marks;
+	}
+
+	public function getDetails() {
+		return [
+			'startTime' => $this->startTime,
+			'stopTime' => $this->stopTime,
+			'duration' => $this->getDuration()
+		];
+	}
+
+	protected function getDifference($time1, $time2) {
+		return $time2 - $time1 > 0 ?  $time2 - $time1 : 0; 
 	}
 }

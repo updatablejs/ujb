@@ -89,7 +89,14 @@ Array
 </pre>
 
 <h2>Documentation</h2>
- <ul>
+<h3>Database</h3>
+<ul>
   <li><a href="https://github.com/updatablejs/ujb/blob/main/docs/database/database.md">Database</a></li>
   <li><a href="https://github.com/updatablejs/ujb/blob/main/docs/database/assembler.md">Assembler</a></li>
+</ul>
+
+<h3>Common</h3>
+<ul>
+  <li><a href="https://github.com/updatablejs/ujb/blob/main/docs/common/chronometer.md">Chronometer</a></li>
+  <li><a href="https://github.com/updatablejs/ujb/blob/main/docs/common/benchmark.md">Benchmark</a></li>
 </ul>
