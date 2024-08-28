@@ -20,13 +20,7 @@ class Util {
 	}
 	
 	public static function isNumericArray($array) {
-    	if (!is_array($array)) return false;
-		
-		foreach (array_keys($array) as $key) {
-			if (!is_int($key)) return false;
-		}
-		
-		return true;
+		return ArrayUtil::isNumeric($array);
 	}
 
 	public static function gracefulRound($value, $min = 2, $max = 4) {
@@ -34,16 +28,6 @@ class Util {
 		
 		return ($result == 0 && $min < $max) ? 
 			self::gracefulRound($value, ++$min, $max) : $result;
-	}
-
-	public static function getDirectories($path) {
-		$result = [];
-		foreach (new \DirectoryIterator($path) as $file) {
-			if ($file->isDir() && !$file->isDot())
-				$result[] = $file->getFilename();
-		}
-			
-		return $result;
 	}
 
 	public static function removeWhitespaces($string) {
@@ -62,11 +46,46 @@ class Util {
 
 	// Path
 	
-	public static function isFullyQualified($path) {
+	public static function isAbsolutePath($path) {
 		return preg_match('/^[\/\\\]/', $path);
 	}
 	
-	public static function isQualified($path) {
+	public static function isPath($path) {
 		return preg_match('/[\/\\\]/', $path);
+	}
+	
+	/**
+	 * $base: a/b/file.js
+	 * $path: 
+	 * 	./file.js => a/b/file.js
+	 *	../file.js => a/file.js
+	 *	../../../file.js => ../file.js
+	 */
+	public static function resolvePath($path, $base) {
+		if (strpos(basename($base), '.') !== false)
+			$base = dirname($base);
+
+		$path = $base . '/' . $path;
+		$parts = [];
+		foreach (explode('/', $path) as $part) {
+			if ($part === '..') {
+				if (!empty($parts) && end($parts) !== '..')
+					array_pop($parts);
+				else
+					$parts[] = $part;	
+			} 
+			elseif ($part !== '.' && $part !== '') {
+				$parts[] = $part;
+			}
+		}
+		
+		return implode('/', $parts);
+	}
+	
+	public static function isDirectoryEmpty($directory) {
+		if ($directory instanceof \SplFileInfo)
+			$directory = $directory->getPathname();
+		
+		return is_dir($directory) && !(new \FilesystemIterator($directory))->valid();
 	}
 }

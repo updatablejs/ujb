@@ -2,10 +2,20 @@
 
 use ujb\common\Chronometer;
 
+/*
 function printr($array) {
 	echo '<pre>';
 	print_r($array);
 	echo '</pre>';
+}
+*/
+
+function printr(...$values) {
+	foreach ($values as $value) {
+		echo '<pre>';
+		print_r($value);
+		echo '</pre>';
+	}
 }
 
 if (!function_exists('is_iterable')) {
